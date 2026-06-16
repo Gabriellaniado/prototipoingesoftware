@@ -578,5 +578,109 @@ function fakeLogin(){
 }
 </script>
 
-</body>
+
+<section id="vehicleManagementSection" class="section">
+<div class="jit-header">
+    <h2>GESTIÓN DE VEHÍCULOS</h2>
+</div>
+
+<div class="dashboard-box">
+    <h4>Alta de Vehículo</h4>
+    <div class="filters" style="grid-template-columns:repeat(2,1fr);">
+        <input type="text" placeholder="Marca *">
+        <input type="text" placeholder="Modelo *">
+        <input type="number" placeholder="Año *">
+
+        <select>
+            <option>Categoría *</option>
+            <option>0 KM</option>
+            <option>Usado</option>
+        </select>
+
+        <input type="number" placeholder="Kilómetros">
+        <input type="text" placeholder="Color">
+
+        <select>
+            <option>Sucursal *</option>
+            <option>Casa Central</option>
+            <option>Sucursal Norte</option>
+            <option>Sucursal Sur</option>
+        </select>
+
+        <select>
+            <option>Estado Inicial *</option>
+            <option>Disponible</option>
+            <option>En tránsito</option>
+        </select>
+
+        <input type="number" placeholder="Precio *">
+        <input type="file" multiple>
+
+        <textarea placeholder="Descripción del vehículo" style="grid-column:1/-1;padding:14px;background:#141414;color:white;border-radius:10px;"></textarea>
+    </div>
+
+    <div style="margin-top:20px;">
+        <button class="submit-btn" onclick="alert('Vehículo dado de alta correctamente y visible en catálogo.')">Registrar Vehículo</button>
+    </div>
+</div>
+
+<div class="dashboard-box" style="margin-top:30px;">
+    <h4>Gestión de Estado de Unidades</h4>
+
+    <table class="table-jit">
+        <thead>
+            <tr>
+                <th>Vehículo</th>
+                <th>Sucursal</th>
+                <th>Estado Actual</th>
+                <th>Cambiar Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Toyota Hilux SRX</td>
+                <td>Casa Central</td>
+                <td><span class="red-text">En tránsito</span></td>
+                <td>
+                    <select>
+                        <option>Disponible</option>
+                        <option>Reservado</option>
+                        <option>En tránsito</option>
+                        <option>Vendido</option>
+                    </select>
+                </td>
+                <td><button class="btn-confirm">Actualizar</button></td>
+            </tr>
+
+            <tr>
+                <td>Fiat Cronos Drive</td>
+                <td>Sucursal Norte</td>
+                <td><span class="red-text">Vendido</span></td>
+                <td>
+                    <select disabled>
+                        <option>Vendido</option>
+                    </select>
+                </td>
+                <td><button class="btn-confirm" disabled>Bloqueado</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</section>
+
+<script>
+const originalFakeLogin = fakeLogin;
+fakeLogin = function(){
+    originalFakeLogin();
+    if(document.getElementById('empleadoTab').classList.contains('active-tab')){
+        document.getElementById('mainNavLinks').innerHTML = `
+            <a href="#" onclick="showSection('jitDashboardSection')">Repuestos JIT</a>
+            <a href="#" onclick="showSection('vehicleManagementSection')">Vehículos</a>
+            <a href="#">Taller</a>
+            <a href="#">Finanzas</a>
+            <a href="#">Sucursales</a>`;
+    }
+}
+</script></body>
 </html>
